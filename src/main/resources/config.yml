@@ -11,6 +11,8 @@
 #
 
 settings:
+  update: true # Проверять ли наличие обновлений
+
   cooldown: 1000
 
   hide-invisible: true

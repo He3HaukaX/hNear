@@ -1,3 +1,14 @@
-.idea
+.idea/
 *.iml
-targetg
+*.iws
+
+target/
+
+build/
+
+*.log
+*.tmp
+*.bak
+
+.DS_Store
+Thumbs.db

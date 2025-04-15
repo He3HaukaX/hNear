@@ -5,6 +5,7 @@ import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.he3hauka.hnear.command.NearHandler;
 import ru.he3hauka.hnear.config.Config;
+import ru.he3hauka.hnear.update.UpdateChecker;
 import ru.he3hauka.hnear.utils.Metrics;
 
 import java.io.File;
@@ -19,6 +20,10 @@ public class Main extends JavaPlugin {
         LuckPerms luckPerms = LuckPermsProvider.get();
 
         getCommand("near").setExecutor(new NearHandler(config, luckPerms));
+
+        if (getConfig().getBoolean("settings.update")) {
+            new UpdateChecker(this).checkForUpdates();
+        }
 
         new Metrics(this, 25436);
     }
