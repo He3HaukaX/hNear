@@ -1,0 +1,104 @@
+# [ Plugin provided by He3HaukaX / the best developer ]
+#  
+# My TGK channel: https://t.me/hplugin
+# My DSK channel: https://discord.gg/adEdUGAXS7
+#
+# My TG: @he3haukaX
+# My VK: 1xneonx1
+# My DS: _he3hauka_
+#
+# This - the best plugin for /near command, fully customizable!
+#
+
+settings:
+  cooldown: 1000
+
+  hide-invisible: true
+  hide-ops: true
+
+  up: "ниже вас"
+  down: "выше вас"
+  same: "одна высота"
+
+  arrows:
+    ↑: "⇑"
+    ↗: "⇗"
+    →: "⇒"
+    ↘: "⇘"
+    ↓: "⇓"
+    ↙: "⇙"
+    ←: "⇐"
+    ↖: "⇖"
+
+  directions:
+    ↑: "прямо"
+    ↗: "справа спереди"
+    →: "справа"
+    ↘: "справа сзади"
+    ↓: "сзади"
+    ↙: "слева сзади"
+    ←: "слева"
+    ↖: "слева спереди"
+
+  radius: # LuckPerms groups
+    default: 50 # Max near radius
+    developer: 500
+
+# [ Plugin actions ]
+#
+# near actions:
+# - "[Message] Hi, its near message!"
+# - "[PlayerList] Players nearby: %player_name% (%radius metres), direct info: %arrow% (%direction%)"
+# - "[Title] Players nearby && Radius %radius% metres"
+# - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+#
+# empty actions:
+# - "[Message] Hi, it's near empty message!"
+# - "[Title] Players nearby && No players nearby"
+# - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+#
+# cooldown actions:
+#
+# - "[Message] Hi, its cooldown message!"
+# - "[Title] Cooldown! && Please, wait %cooldown% seconds"
+# - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
+#
+# [ Plugin actions ]
+#
+# HoverText example: {HoverText:cmd /invsee %target%, text: &aClick, to open player inventory}
+#
+# All messages and playerlist support PlaceholderAPI & HoverText!
+#
+# All actions support Sound, Title, Messages
+#
+
+near:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8╔"
+    - "[PlayerList] §x§F§B§9§C§0§8║ &f%vault_prefix%&f%player_name%&f &7(§x§F§B§9§C§0§8%p_radius% &l%arrow%&7)&f, %direction% &7(§x§F§B§9§C§0§8%height_diff%&7) {HoverText:cmd /invsee %target%, text: §x§F§B§9§C§0§8Открыть инвентарь игрока}"
+    - "[Message] §x§F§B§9§C§0§8╚"
+    - "[Title] &fНайдены §x§F§B§9§C§0§8игроки&f! && &fРадиус&7: §x§F§B§9§C§0§8%radius% &fблоков"
+    - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+empty:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8&lНЕАР&7: &fИгроков §x§F§B§9§C§0§8поблизости&f нет {HoverText:cmd /warp pvp, text: §x§F§B§9§C§0§8Телепортация на пвп арену}"
+    - "[Title] &fНет §x§F§B§9§C§0§8игроков && &fРадиус&7: §x§F§B§9§C§0§8%radius% &fблоков"
+    - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+cooldown:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8&lНЕАР&7: &fДействует §x§F§B§9§C§0§8задержка&f, подождите ещё §x§F§B§9§C§0§8%cooldown% &fсекунд"
+    - "[Title] &fПодождите §x§F§B§9§C§0§8%cooldown% &fсек && &fПеред §x§F§B§9§C§0§8повторым &fвыполнением!"
+    - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
+radius:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8╔"
+    - "[Message] §x§F§B§9§C§0§8║ &fСлишком §x§F§B§9§C§0§8большой&f радиус &7(§x§F§B§9§C§0§8%radius% &fблоков&7)"
+    - "[Message] §x§F§B§9§C§0§8║ &fМаксимальноый §x§F§B§9§C§0§8доступный&f вам&7: §x§F§B§9§C§0§8%max-radius% &fблоков"
+    - "[Message] §x§F§B§9§C§0§8╚"
+    - "[Title] &fСлишком §x§F§B§9§C§0§8большой&f радиус! && &fМаксимальный для вас&7: §x§F§B§9§C§0§8%max_radius% &fблоков"
+    - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
+integer:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8&lНЕАР&7: &fРадиус должен быть целым §x§F§B§9§C§0§8числом"
+    - "[Title] &fРадиус §x§F§B§9§C§0§8должен &fбыть && &fЦелым числом!"
+    - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
