@@ -27,14 +27,23 @@ public class ActionExecutor {
         this.permissionService = permissionService;
     }
 
-    public void execute(Player player, List<String> actions, Location origin, List<? extends Player> nearbyPlayers, int radius, String cooldown) {
+    public void execute(Player player,
+                        List<String> actions,
+                        Location origin,
+                        List<? extends Player> nearbyPlayers,
+                        int radius,
+                        String cooldown,
+                        String toggle,
+                        String perms) {
         for (String action : actions) {
             String actionType = action.split(" ")[0];
             String actionContent = action.substring(actionType.length()).trim();
 
             actionContent = actionContent
                     .replace("%cooldown%", cooldown)
-                    .replace("%radius%", String.valueOf(radius));
+                    .replace("%radius%", String.valueOf(radius))
+                    .replace("%toggle%", toggle)
+                    .replace("%perms%", perms);
 
             switch (actionType) {
                 case "[Message]" -> handleMessage(player, actionContent);

@@ -9,9 +9,23 @@
 #
 # This - the best plugin for /near command, fully customizable!
 #
+# Permissions:
+# /near auto (hnear.auto)
+# /near max/maxradius (hnear.use)
 
 settings:
   update: true # Проверять ли наличие обновлений
+
+  bossbar:
+    title: "&fАвтоматический §x§F§B§9§C§0§8поиск &fигроков..."
+    color: "RED"
+    style: "SEGMENTED_12"
+    time: 46
+    refresh: 2
+
+  toggle:
+    on: "включен"
+    off: "выключен"
 
   cooldown: 1000
 
@@ -104,3 +118,25 @@ integer:
     - "[Message] §x§F§B§9§C§0§8&lНЕАР&7: &fРадиус должен быть целым §x§F§B§9§C§0§8числом"
     - "[Title] &fРадиус §x§F§B§9§C§0§8должен &fбыть && &fЦелым числом!"
     - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
+autonear:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8╔"
+    - "[PlayerList] §x§F§B§9§C§0§8║ &f%vault_prefix%&f%player_name%&f &7(§x§F§B§9§C§0§8%p_radius% &l%arrow%&7)&f, %direction% &7(§x§F§B§9§C§0§8%height_diff%&7) {HoverText:cmd /invsee %target%, text: §x§F§B§9§C§0§8Открыть инвентарь игрока}"
+    - "[Message] §x§F§B§9§C§0§8╚"
+autoempty:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8&lНЕАР&7: &fИгроков §x§F§B§9§C§0§8поблизости&f нет {HoverText:cmd /warp pvp, text: §x§F§B§9§C§0§8Телепортация на пвп арену}"
+autotoggle:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8&lНЕАР&7: &fАвтоматический §x§F§B§9§C§0§8радар&f был §x§F§B§9§C§0§8%toggle%"
+    - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+noperms:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8&lНЕАР&7: &fУ вас нет §x§F§B§9§C§0§8права &f%perms%"
+    - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
+help:
+  actions:
+    - "[Message] §x§F§B§9§C§0§8╔"
+    - "[Message] §x§F§B§9§C§0§8║ &fРучной поиск&7: §x§F§B§9§C§0§8/near radius"
+    - "[Message] §x§F§B§9§C§0§8║ &fАвтоматический поиск&7: §x§F§B§9§C§0§8/near auto"
+    - "[Message] §x§F§B§9§C§0§8╚"

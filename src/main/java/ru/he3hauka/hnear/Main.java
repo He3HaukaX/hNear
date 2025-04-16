@@ -19,7 +19,7 @@ public class Main extends JavaPlugin {
 
         LuckPerms luckPerms = LuckPermsProvider.get();
 
-        getCommand("near").setExecutor(new NearHandler(config, luckPerms));
+        getCommand("near").setExecutor(new NearHandler(this, config, luckPerms));
 
         if (getConfig().getBoolean("settings.update")) {
             new UpdateChecker(this).checkForUpdates();
