@@ -105,19 +105,6 @@ cooldown:
     - "[Message] §x§F§B§9§C§0§8&lНЕАР&7: &fДействует §x§F§B§9§C§0§8задержка&f, подождите ещё §x§F§B§9§C§0§8%cooldown% &fсекунд"
     - "[Title] &fПодождите §x§F§B§9§C§0§8%cooldown% &fсек && &fПеред §x§F§B§9§C§0§8повторым &fвыполнением!"
     - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
-radius:
-  actions:
-    - "[Message] §x§F§B§9§C§0§8╔"
-    - "[Message] §x§F§B§9§C§0§8║ &fСлишком §x§F§B§9§C§0§8большой&f радиус &7(§x§F§B§9§C§0§8%radius% &fблоков&7)"
-    - "[Message] §x§F§B§9§C§0§8║ &fМаксимальноый §x§F§B§9§C§0§8доступный&f вам&7: §x§F§B§9§C§0§8%max-radius% &fблоков"
-    - "[Message] §x§F§B§9§C§0§8╚"
-    - "[Title] &fСлишком §x§F§B§9§C§0§8большой&f радиус! && &fМаксимальный для вас&7: §x§F§B§9§C§0§8%max_radius% &fблоков"
-    - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
-integer:
-  actions:
-    - "[Message] §x§F§B§9§C§0§8&lНЕАР&7: &fРадиус должен быть целым §x§F§B§9§C§0§8числом"
-    - "[Title] &fРадиус §x§F§B§9§C§0§8должен &fбыть && &fЦелым числом!"
-    - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
 autonear:
   actions:
     - "[Message] §x§F§B§9§C§0§8╔"

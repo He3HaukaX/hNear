@@ -9,7 +9,6 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import ru.he3hauka.hnear.config.Config;
-import ru.he3hauka.hnear.service.PermissionService;
 import ru.he3hauka.hnear.utils.Direction;
 import ru.he3hauka.hnear.utils.Papi;
 
@@ -18,13 +17,13 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ActionExecutor {
+import static ru.he3hauka.hnear.utils.HexSupport.format;
 
+public class ActionExecutor {
     private final Config config;
-    private final PermissionService permissionService;
-    public ActionExecutor(Config config, PermissionService permissionService) {
+
+    public ActionExecutor(Config config) {
         this.config = config;
-        this.permissionService = permissionService;
     }
 
     public void execute(Player player,
@@ -56,15 +55,12 @@ public class ActionExecutor {
     }
 
     private void handleMessage(Player player, String content) {
-        content = Papi.process(player, content);
-
-        int maxRadius = permissionService.getMaxRadius(player.getUniqueId());
-        content = content.replace("%max-radius%", String.valueOf(maxRadius));
+        content = format(Papi.process(player, content));
 
         Matcher matcher = Pattern.compile("\\{HoverText:cmd (.*?), text: (.*?)}").matcher(content);
         if (matcher.find()) {
             String cmd = matcher.group(1).trim();
-            String hoverText = matcher.group(2).trim();
+            String hoverText = format(matcher.group(2).trim());
             content = content.substring(0, matcher.start()) + content.substring(matcher.end());
 
             TextComponent message = LegacyComponentSerializer.legacySection().deserialize(content)
@@ -90,10 +86,7 @@ public class ActionExecutor {
     }
 
     private void handleTitle(Player player, String content) {
-        content = Papi.process(player, content);
-
-        int maxRadius = permissionService.getMaxRadius(player.getUniqueId());
-        content = content.replace("%max-radius%", String.valueOf(maxRadius));
+        content = format(Papi.process(player, content));
 
         String[] parts = content.split("&&");
         String title = parts.length > 0 ? parts[0].trim() : "";
@@ -123,12 +116,12 @@ public class ActionExecutor {
                     .replace("%p_radius%", String.format("%.1f", distance))
                     .replace("%height_diff%", heightDiff);
 
-            parsed = Papi.process(target, parsed);
+            parsed = format(Papi.process(target, parsed));
 
             Matcher matcher = Pattern.compile("\\{HoverText:cmd (.*?), text: (.*?)}").matcher(parsed);
             if (matcher.find()) {
                 String cmd = matcher.group(1).trim();
-                String hoverText = matcher.group(2).trim();
+                String hoverText = format(matcher.group(2).trim());
                 parsed = parsed.substring(0, matcher.start()) + parsed.substring(matcher.end());
 
                 TextComponent message = LegacyComponentSerializer.legacySection().deserialize(parsed)

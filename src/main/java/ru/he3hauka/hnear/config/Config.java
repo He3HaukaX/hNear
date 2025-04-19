@@ -20,8 +20,6 @@ public class Config {
     public List<String> autoempty_actions;
     public List<String> empty_actions;
     public List<String> cooldown_actions;
-    public List<String> integer_actions;
-    public List<String> radius_actions;
     public List<String> autotoggle_actions;
     public List<String> noperms_actions;
     public List<String> help_actions;
@@ -75,8 +73,6 @@ public class Config {
         this.near_actions = config.getStringList("near.actions");
         this.empty_actions = config.getStringList("empty.actions");
         this.cooldown_actions = config.getStringList("cooldown.actions");
-        this.radius_actions = config.getStringList("radius.actions");
-        this.integer_actions = config.getStringList("integer.actions");
         this.autonear_actions = config.getStringList("autonear.actions");
         this.autoempty_actions = config.getStringList("autoempty.actions");
         this.autotoggle_actions = config.getStringList("autotoggle.actions");

@@ -13,7 +13,7 @@ import java.io.File;
 public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
-        createFiles("config.yml");
+        createFiles();
         Config config = new Config(this);
         config.init();
 
@@ -28,10 +28,10 @@ public class Main extends JavaPlugin {
         new Metrics(this, 25436);
     }
 
-    private void createFiles(String fileName) {
-        File file = new File(getDataFolder(), fileName);
+    private void createFiles() {
+        File file = new File(getDataFolder(), "config.yml");
         if (!file.exists()) {
-            saveResource(fileName, false);
+            saveResource("config.yml", false);
         }
     }
 }

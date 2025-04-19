@@ -40,7 +40,7 @@ public class NearHandler implements CommandExecutor {
         this.plugin = plugin;
         this.cooldownManager = new CooldownManager(config.cooldown_time);
         this.permissionService = new PermissionService(luckPerms, config.radius);
-        this.actionExecutor = new ActionExecutor(config, permissionService);
+        this.actionExecutor = new ActionExecutor(config);
         this.nearbyService = new NearbyService(config.hide_invisible, config.hide_ops);
         this.config = config;
     }
@@ -97,7 +97,6 @@ public class NearHandler implements CommandExecutor {
 
             return true;
         } catch (Exception e) {
-            player.sendMessage(format("&cПроизошла ошибка при выполнении команды"));
             plugin.getLogger().log(Level.SEVERE, "Ошибка в handleMaxRadius", e);
             return false;
         }
