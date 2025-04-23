@@ -1,5 +1,5 @@
 name: hNear
-version: "1.6"
+version: "1.7"
 main: ru.he3hauka.hnear.Main
 api-version: '1.16'
 softdepend: [PlaceholderAPI,LuckPerms]
@@ -8,3 +8,4 @@ author: He3Hauka
 website: https://t.me/hplugin
 commands:
   near:
+  hnear:

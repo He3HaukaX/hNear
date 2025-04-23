@@ -16,6 +16,31 @@
 settings:
   update: true # Проверять ли наличие обновлений
 
+  prefix: "&7[&#FB9C08https://t.me/hplugin&7]&f"
+  locale: ru
+  # en – English
+  # ru – Русский
+  # be – Беларуская
+  # uk – Українська
+  # fr – Français
+  # de – Deutsch
+  # es – Español
+  # zh – 中文
+  # ar – العربية
+  # pl – Polski
+  # pt – Português
+  # it – Italiano
+  # af – Afrikaans
+  # sq – Shqip
+  # am – አማርኛ
+  # hy – Հայերեն
+  # bn – বাংলা
+  # bs – Bosanski
+  # ca – Català
+  # hr – Hrvatski
+  # ro – Română
+  # la – Latine
+
   bossbar:
     title: "&fАвтоматический §x§F§B§9§C§0§8поиск &fигроков..."
     color: "RED"
@@ -32,8 +57,8 @@ settings:
   hide-invisible: true
   hide-ops: true
 
-  up: "ниже вас"
-  down: "выше вас"
+  up: "выше вас"
+  down: "ниже вас"
   same: "одна высота"
 
   arrows:

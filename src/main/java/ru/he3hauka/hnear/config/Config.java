@@ -37,6 +37,8 @@ public class Config {
     public String bossbar_style;
     public int bossbar_time;
     public int bossbar_refresh;
+    public String locale;
+    public String prefix;
     private final JavaPlugin plugin;
     public Config(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -87,15 +89,18 @@ public class Config {
         this.toggle_on = config.getString("settings.toggle.on", "включен");
         this.toggle_off = config.getString("settings.toggle.off", "выключен");
 
-        this.up = config.getString("settings.up", "ниже вас");
-        this.down = config.getString("settings.down", "выше вас");
+        this.up = config.getString("settings.up", "выше вас");
+        this.down = config.getString("settings.down", "ниже вас");
         this.same = config.getString("settings.same", "одна высота");
 
         this.bossbar_title = config.getString("settings.bossbar.title", "&fАвтоматический §x§F§B§9§C§0§8поиск &fигроков...");
         this.bossbar_color = config.getString("settings.bossbar.color", "RED");
         this.bossbar_style = config.getString("settings.bossbar.style", "SEGMENTED_10");
-        this.bossbar_time = config.getInt("settings.bossbar.time", 30);
-        this.bossbar_refresh = config.getInt("settings.bossbar.refresh", 1);
+        this.bossbar_time = config.getInt("settings.bossbar.time", 46);
+        this.bossbar_refresh = config.getInt("settings.bossbar.refresh", 2);
+
+        this.locale = config.getString("locale", "ru");
+        this.prefix = config.getString("prefix", "&7[&#FB9C08https://t.me/hplugin&7]&f");
     }
 }
 
