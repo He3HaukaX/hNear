@@ -99,8 +99,8 @@ public class Config {
         this.bossbar_time = config.getInt("settings.bossbar.time", 46);
         this.bossbar_refresh = config.getInt("settings.bossbar.refresh", 2);
 
-        this.locale = config.getString("locale", "ru");
-        this.prefix = config.getString("prefix", "&7[&#FB9C08https://t.me/hplugin&7]&f");
+        this.locale = config.getString("settings.locale", "ru");
+        this.prefix = config.getString("settings.prefix", "&7[&#FB9C08https://t.me/hplugin&7]&f");
     }
 }
 

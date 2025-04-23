@@ -1,5 +1,5 @@
 name: hNear
-version: "1.7"
+version: "1.7.1"
 main: ru.he3hauka.hnear.Main
 api-version: '1.16'
 softdepend: [PlaceholderAPI,LuckPerms]

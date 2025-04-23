@@ -26,7 +26,7 @@ public class Main extends JavaPlugin {
         getCommand("hnear").setTabCompleter(new CommandHandler(config,config.locale));
 
         if (getConfig().getBoolean("settings.update")) {
-            new UpdateChecker(this).checkForUpdates();
+            new UpdateChecker(this, config.locale).checkForUpdates();
         }
 
         new Metrics(this, 25436);
