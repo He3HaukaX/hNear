@@ -34,7 +34,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        if (sender.hasPermission("hnear.admin") || sender.hasPermission("*") || sender.isOp()) {
+        if (!sender.hasPermission("hnear.admin") || !sender.hasPermission("*") || !sender.isOp()) {
             sendMessage(sender, localization.get("no_permission"));
             return false;
         }
