@@ -7,14 +7,18 @@ import ru.he3hauka.hnear.command.CommandHandler;
 import ru.he3hauka.hnear.command.NearHandler;
 import ru.he3hauka.hnear.config.Config;
 import ru.he3hauka.hnear.update.UpdateChecker;
-import ru.he3hauka.hnear.utils.Metrics;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
-        createFiles();
+        authorInfo();
+
+        saveDefaultConfig();
         Config config = new Config(this);
         config.init();
 
@@ -22,20 +26,30 @@ public class Main extends JavaPlugin {
 
         getCommand("near").setExecutor(new NearHandler(this, config, luckPerms));
 
-        getCommand("hnear").setExecutor(new CommandHandler(config, config.locale));
-        getCommand("hnear").setTabCompleter(new CommandHandler(config,config.locale));
+        getCommand("hnear").setExecutor(new CommandHandler(config));
+        getCommand("hnear").setTabCompleter(new CommandHandler(config));
 
-        if (getConfig().getBoolean("settings.update")) {
-            new UpdateChecker(this, config.locale).checkForUpdates();
+        if (getConfig().getBoolean("settings.update", true)) {
+            new UpdateChecker(this).checkForUpdates();
         }
 
-        new Metrics(this, 25436);
     }
 
-    private void createFiles() {
-        File file = new File(getDataFolder(), "config.yml");
+    public void authorInfo(){
+        File file = new File(getDataFolder(), "info.txt");
+
         if (!file.exists()) {
-            saveResource("config.yml", false);
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            Files.copy(getResource("info.txt"), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

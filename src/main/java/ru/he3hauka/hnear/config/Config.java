@@ -37,8 +37,6 @@ public class Config {
     public String bossbar_style;
     public int bossbar_time;
     public int bossbar_refresh;
-    public String locale;
-    public String prefix;
     private final JavaPlugin plugin;
     public Config(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -98,9 +96,6 @@ public class Config {
         this.bossbar_style = config.getString("settings.bossbar.style", "SEGMENTED_10");
         this.bossbar_time = config.getInt("settings.bossbar.time", 46);
         this.bossbar_refresh = config.getInt("settings.bossbar.refresh", 2);
-
-        this.locale = config.getString("settings.locale", "ru");
-        this.prefix = config.getString("settings.prefix", "&7[&#FB9C08https://t.me/hplugin&7]&f");
     }
 }
 
