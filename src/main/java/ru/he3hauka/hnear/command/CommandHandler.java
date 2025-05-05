@@ -22,7 +22,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (!sender.hasPermission("hnear.admin") || !sender.hasPermission("*") || !sender.isOp()) {
+        if (!sender.hasPermission("hnear.admin") || !sender.isOp()) {
             sender.sendMessage("§7[§x§F§B§9§C§0§8hNear§7] §fYou don't have enough rights!");
             return false;
         }
