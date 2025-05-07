@@ -52,13 +52,27 @@ public class NearHandler implements CommandExecutor {
             return true;
         }
 
-        if (args.length == 0) {
-            actionExecutor.execute(player, config.help_actions, player.getLocation(), Collections.emptyList(), 0, "0", "N/A", "hnear.auto");
+        if (!sender.hasPermission("hnear.use") || !sender.isOp()) {
+            int maxRadius = permissionService.getMaxRadius(player.getUniqueId());
+            actionExecutor.execute(player, config.noperms_actions, player.getLocation(), Collections.emptyList(), maxRadius, "0", "N/A", "hnear.use");
             return true;
         }
 
-        if (args[0].equalsIgnoreCase("auto")) {
-            if (!player.hasPermission("hnear.auto")) {
+        int mode = config.command_mode;
+
+        if (args.length == 0) {
+            if (mode == 3) {
+                return handleMaxRadius(player);
+            } else {
+                actionExecutor.execute(player, config.help_actions, player.getLocation(), Collections.emptyList(), 0, "0", "N/A", "hnear.auto");
+                return true;
+            }
+        }
+
+        String arg = args[0].toLowerCase();
+
+        if (arg.equals("auto")) {
+            if (!player.hasPermission("hnear.auto") || !sender.isOp()) {
                 actionExecutor.execute(player, config.noperms_actions, player.getLocation(), Collections.emptyList(), 0, "0", "N/A", "hnear.auto");
                 return true;
             }
@@ -66,18 +80,53 @@ public class NearHandler implements CommandExecutor {
             return true;
         }
 
-        if (args[0].equalsIgnoreCase("radius") || args[0].equalsIgnoreCase("maxradius")) {
-            if (!player.hasPermission("hnear.use")) {
-                int maxRadius = permissionService.getMaxRadius(player.getUniqueId());
-                actionExecutor.execute(player, config.noperms_actions, player.getLocation(), Collections.emptyList(), maxRadius, "0", "N/A", "hnear.use");
+        if (mode == 1 && (arg.equals("radius") || arg.equals("maxradius"))) {
+            return handleMaxRadius(player);
+        }
+
+        if (mode == 2) {
+            try {
+                int radius = Integer.parseInt(arg);
+                return handleCustomRadius(player, radius);
+            } catch (NumberFormatException e) {
+                actionExecutor.execute(player, config.help_actions, player.getLocation(), Collections.emptyList(), 0, "0", "N/A", "hnear.auto");
                 return true;
             }
-            return handleMaxRadius(player);
         }
 
         actionExecutor.execute(player, config.help_actions, player.getLocation(), Collections.emptyList(), 0, "0", "N/A", "hnear.auto");
         return true;
     }
+
+    private boolean handleCustomRadius(Player player, int radius) {
+        try {
+            int maxRadius = permissionService.getMaxRadius(player.getUniqueId());
+
+            if (radius > maxRadius) {
+                actionExecutor.execute(player, config.maxradius_actions, player.getLocation(),
+                        Collections.emptyList(), radius, "0", "N/A", "N/A");
+                return true;
+            }
+
+            if (cooldownManager.isCooldown(player.getUniqueId())) {
+                long remaining = cooldownManager.getRemainingTime(player.getUniqueId()) / 1000;
+                actionExecutor.execute(player, config.cooldown_actions, player.getLocation(),
+                        Collections.emptyList(), radius, String.valueOf(remaining), "N/A", "N/A");
+                return true;
+            }
+
+            cooldownManager.setCooldown(player.getUniqueId());
+            List<Player> nearby = nearbyService.findPlayers(player, radius);
+            List<String> actions = nearby.isEmpty() ? config.empty_actions : config.near_actions;
+            actionExecutor.execute(player, actions, player.getLocation(), nearby, radius, "0", "N/A", "N/A");
+
+            return true;
+        } catch (Exception e) {
+            plugin.getLogger().log(Level.SEVERE, "Ошибка в handleCustomRadius", e);
+            return false;
+        }
+    }
+
 
     private boolean handleMaxRadius(Player player) {
         try {

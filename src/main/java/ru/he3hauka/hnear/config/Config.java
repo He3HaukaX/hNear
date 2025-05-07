@@ -23,6 +23,7 @@ public class Config {
     public List<String> autotoggle_actions;
     public List<String> noperms_actions;
     public List<String> help_actions;
+    public List<String> maxradius_actions;
     public int cooldown_time;
     public Boolean hide_invisible;
     public Map<String, Integer> radius;
@@ -37,6 +38,7 @@ public class Config {
     public String bossbar_style;
     public int bossbar_time;
     public int bossbar_refresh;
+    public int command_mode;
     private final JavaPlugin plugin;
     public Config(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -78,6 +80,7 @@ public class Config {
         this.autotoggle_actions = config.getStringList("autotoggle.actions");
         this.noperms_actions = config.getStringList("noperms.actions");
         this.help_actions = config.getStringList("help.actions");
+        this.maxradius_actions = config.getStringList("max-radius.actions");
 
         this.cooldown_time = config.getInt("settings.cooldown", 3000);
 
@@ -90,6 +93,8 @@ public class Config {
         this.up = config.getString("settings.up", "выше вас");
         this.down = config.getString("settings.down", "ниже вас");
         this.same = config.getString("settings.same", "одна высота");
+
+        this.command_mode = config.getInt("settings.mode", 1);
 
         this.bossbar_title = config.getString("settings.bossbar.title", "&fАвтоматический §x§F§B§9§C§0§8поиск &fигроков...");
         this.bossbar_color = config.getString("settings.bossbar.color", "RED");
