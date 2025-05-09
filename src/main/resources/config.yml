@@ -1,17 +1,20 @@
-# [ Plugin provided by He3HaukaX / the best developer ]
-#  
-# My TGK channel: https://t.me/hplugin
-# My DSK channel: https://discord.gg/adEdUGAXS7
-#
-# My TG: @he3haukaX
-# My VK: 1xneonx1
-# My DS: _he3hauka_
-#
-# This - the best plugin for /near command, fully customizable!
-#
-# Permissions:
-# /near auto (hnear.auto)
-# /near (hnear.use)
+# Aviable actions:
+# 1. [Message] - HoverText + PlaceholderAPI
+# 2. [Broadcast] - HoverText + PlaceholderAPI
+# 3. [Sound]
+# 4. [Console] - PlaceholderAPI
+# 5. [Bossbar] - PlaceholderAPI
+# 6. [Title] - PlaceholderAPI
+# 7. [Actionbar] - PlaceholderAPI
+
+# Actions example:
+# 1. [Message] &#FB9C08&lMESSAGE EXAMPLE %player_name% {HoverText:cmd /example, text: &#FB9C08HOVERTEXT EXAMPLE}
+# 2. [Broadcast] &#FB9C08&lMESSAGE EXAMPLE %server_online% {HoverText:cmd /example, text: &#FB9C08HOVERTEXT EXAMPLE}
+# 3. [Sound] ENTITY_VILLAGER_NO:1.0:1.0
+# 4. [Console] say %player% qq bro, server online == %server_online%
+# 5. [Bossbar] &fBossbar example for &#FB9C08%player_name%:100:red:notched_10:1.0"
+# 6. [Title] Title example && For &#FB9C08%player_name%
+# 7. [Actionbar] Actionbar example for &#FB9C08%player_name%
 
 settings:
   update: true # Check for updates

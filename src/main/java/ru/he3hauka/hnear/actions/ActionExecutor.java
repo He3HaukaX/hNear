@@ -1,5 +1,6 @@
 package ru.he3hauka.hnear.actions;
 
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
@@ -21,7 +22,7 @@ import static ru.he3hauka.hnear.utils.HexSupport.format;
 
 public class ActionExecutor {
     private final Config config;
-
+    private static final LegacyComponentSerializer SERIALIZER = LegacyComponentSerializer.legacySection();
     public ActionExecutor(Config config) {
         this.config = config;
     }
@@ -35,8 +36,8 @@ public class ActionExecutor {
                         String toggle,
                         String perms) {
         for (String action : actions) {
-            String actionType = action.split(" ")[0];
-            String actionContent = action.substring(actionType.length()).trim();
+            String type = action.split(" ")[0];
+            String actionContent = action.substring(type.length()).trim();
 
             actionContent = actionContent
                     .replace("%cooldown%", cooldown)
@@ -44,12 +45,13 @@ public class ActionExecutor {
                     .replace("%toggle%", toggle)
                     .replace("%perms%", perms);
 
-            switch (actionType) {
+            switch (type) {
                 case "[Message]" -> handleMessage(player, actionContent);
                 case "[Sound]" -> handleSound(player, actionContent);
                 case "[Title]" -> handleTitle(player, actionContent);
                 case "[PlayerList]" -> handlePlayerList(player, actionContent, nearbyPlayers, origin);
-                default -> player.sendMessage("Неизвестное действие: " + actionType);
+                case "[Actionbar]" -> handleActionBar(player, actionContent);
+                default -> player.sendMessage(SERIALIZER.deserialize("§cUnknown action type: " + type));
             }
         }
     }
@@ -83,6 +85,15 @@ public class ActionExecutor {
         } catch (Exception e) {
             player.sendMessage("Ошибка при воспроизведении звука");
         }
+    }
+
+    private void handleActionBar(Player player, String content) {
+        if (player == null) return;
+
+        content = format(Papi.process(player, content));
+
+        Component component = SERIALIZER.deserialize(content);
+        player.sendActionBar(component);
     }
 
     private void handleTitle(Player player, String content) {
