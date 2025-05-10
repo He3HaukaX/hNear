@@ -6,8 +6,10 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.title.Title;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import ru.he3hauka.hnear.config.Config;
 import ru.he3hauka.hnear.utils.Direction;
@@ -51,6 +53,7 @@ public class ActionExecutor {
                 case "[Title]" -> handleTitle(player, actionContent);
                 case "[PlayerList]" -> handlePlayerList(player, actionContent, nearbyPlayers, origin);
                 case "[Actionbar]" -> handleActionBar(player, actionContent);
+                case "[Console]" -> runConsoleCommand(player, actionContent);
                 default -> player.sendMessage(SERIALIZER.deserialize("§cUnknown action type: " + type));
             }
         }
@@ -83,7 +86,7 @@ public class ActionExecutor {
             float pitch = parts.length > 2 ? Float.parseFloat(parts[2].trim()) : 1.0f;
             player.playSound(player.getLocation(), sound, volume, pitch);
         } catch (Exception e) {
-            player.sendMessage("Ошибка при воспроизведении звука");
+            player.sendMessage(SERIALIZER.deserialize("§cInvalid sound or parameters"));
         }
     }
 
@@ -108,6 +111,12 @@ public class ActionExecutor {
                 LegacyComponentSerializer.legacySection().deserialize(subtitle),
                 Title.Times.of(Duration.ofMillis(500), Duration.ofMillis(2000), Duration.ofMillis(1000))
         ));
+    }
+
+    private void runConsoleCommand(Player player, String content) {
+        content = format(Papi.process(player, content));
+        ConsoleCommandSender console = Bukkit.getConsoleSender();
+        Bukkit.dispatchCommand(console, content);
     }
 
     private void handlePlayerList(Player player, String content, List<? extends Player> targets, Location origin) {
