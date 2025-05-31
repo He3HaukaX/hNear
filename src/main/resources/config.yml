@@ -1,0 +1,141 @@
+# Aviable actions:
+# 1. [Message] - HoverText + PlaceholderAPI
+# 2. [Broadcast] - HoverText + PlaceholderAPI
+# 3. [Sound]
+# 4. [Console] - PlaceholderAPI
+# 5. [Bossbar] - PlaceholderAPI
+# 6. [Title] - PlaceholderAPI
+# 7. [Actionbar] - PlaceholderAPI
+
+# Actions example:
+# 1. [Message] &#FB9C08&lMESSAGE EXAMPLE %player_name% {HoverText:cmd /example, text: &#FB9C08HOVERTEXT EXAMPLE}
+# 2. [Broadcast] &#FB9C08&lMESSAGE EXAMPLE %server_online% {HoverText:cmd /example, text: &#FB9C08HOVERTEXT EXAMPLE}
+# 3. [Sound] ENTITY_VILLAGER_NO:1.0:1.0
+# 4. [Console] say %player% qq bro, server online == %server_online%
+# 5. [Bossbar] &fBossbar example for &#FB9C08%player_name%:100:red:notched_10:1.0"
+# 6. [Title] Title example && For &#FB9C08%player_name%
+# 7. [Actionbar] Actionbar example for &#FB9C08%player_name%
+
+settings:
+  update: true # Check for updates
+  mode: 3 # 1/2/3
+
+  # 1 /near radius OR auto
+  # 2 /near <radius> OR auto
+  # 3 /near OR auto
+
+  bossbar:
+    title: "&fАвтоматический &#FB9C08поиск &fигроков..."
+    color: "RED"
+    style: "SEGMENTED_12"
+    time: 46
+    refresh: 2
+
+  toggle:
+    on: "включен"
+    off: "выключен"
+
+  cooldown: 1000
+
+  hide-invisible: true
+  hide-ops: true
+
+  up: "выше вас"
+  down: "ниже вас"
+  same: "одна высота"
+
+  arrows:
+    ↑: "⇑"
+    ↗: "⇗"
+    →: "⇒"
+    ↘: "⇘"
+    ↓: "⇓"
+    ↙: "⇙"
+    ←: "⇐"
+    ↖: "⇖"
+
+  directions:
+    ↑: "прямо"
+    ↗: "справа спереди"
+    →: "справа"
+    ↘: "справа сзади"
+    ↓: "сзади"
+    ↙: "слева сзади"
+    ←: "слева"
+    ↖: "слева спереди"
+
+  radius: # LuckPerms groups
+    default: 50 # Max near radius
+    developer: 500
+
+# [ Plugin actions ]
+#
+# near actions:
+# - "[Message] Hi, its near message!"
+# - "[PlayerList] Players nearby: %player_name% (%radius metres), direct info: %arrow% (%direction%)"
+# - "[Title] Players nearby && Radius %radius% metres"
+# - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+#
+# empty actions:
+# - "[Message] Hi, it's near empty message!"
+# - "[Title] Players nearby && No players nearby"
+# - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+#
+# cooldown actions:
+#
+# - "[Message] Hi, its cooldown message!"
+# - "[Title] Cooldown! && Please, wait %cooldown% seconds"
+# - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
+#
+# [ Plugin actions ]
+#
+# HoverText example: {HoverText:cmd /invsee %target%, text: &aClick, to open player inventory}
+#
+# All messages and playerlist support PlaceholderAPI & HoverText!
+#
+# All actions support Sound, Title, Messages
+#
+
+near:
+  actions:
+    - "[Message] &#FB9C08╔"
+    - "[PlayerList] &#FB9C08║ &f%vault_prefix%&f%player_name%&f &7(&#FB9C08%p_radius% &l%arrow%&7)&f, %direction% &7(&#FB9C08%height_diff%&7) {HoverText:cmd /invsee %target%, text: &#FB9C08Открыть инвентарь игрока}"
+    - "[Message] &#FB9C08╚"
+    - "[Title] &fНайдены &#FB9C08игроки&f! && &fРадиус&7: &#FB9C08%radius% &fблоков"
+    - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+empty:
+  actions:
+    - "[Message] &#FB9C08&lНЕАР&7: &fИгроков &#FB9C08поблизости&f нет {HoverText:cmd /warp pvp, text: &#FB9C08Телепортация на пвп арену}"
+    - "[Title] &fНет &#FB9C08игроков && &fРадиус&7: &#FB9C08%radius% &fблоков"
+    - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+cooldown:
+  actions:
+    - "[Message] &#FB9C08&lНЕАР&7: &fДействует &#FB9C08задержка&f, подождите ещё &#FB9C08%cooldown% &fсекунд"
+    - "[Title] &fПодождите &#FB9C08%cooldown% &fсек && &fПеред &#FB9C08повторым &fвыполнением!"
+    - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
+autonear:
+  actions:
+    - "[Message] &#FB9C08╔"
+    - "[PlayerList] &#FB9C08║ &f%vault_prefix%&f%player_name%&f &7(&#FB9C08%p_radius% &l%arrow%&7)&f, %direction% &7(&#FB9C08%height_diff%&7) {HoverText:cmd /invsee %target%, text: &#FB9C08Открыть инвентарь игрока}"
+    - "[Message] &#FB9C08╚"
+autoempty:
+  actions:
+    - "[Message] &#FB9C08&lНЕАР&7: &fИгроков &#FB9C08поблизости&f нет {HoverText:cmd /warp pvp, text: &#FB9C08Телепортация на пвп арену}"
+autotoggle:
+  actions:
+    - "[Message] &#FB9C08&lНЕАР&7: &fАвтоматический &#FB9C08радар&f был &#FB9C08%toggle%"
+    - "[Sound] ENTITY_EXPERIENCE_ORB_PICKUP:1.0:1.0"
+noperms:
+  actions:
+    - "[Message] &#FB9C08&lНЕАР&7: &fУ вас нет &#FB9C08права &f%perms%"
+    - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
+help:
+  actions:
+    - "[Message] &#FB9C08╔"
+    - "[Message] &#FB9C08║ &fРучной поиск&7: &#FB9C08/near radius"
+    - "[Message] &#FB9C08║ &fАвтоматический поиск&7: &#FB9C08/near auto"
+    - "[Message] &#FB9C08╚"
+max-radius:
+  actions:
+    - "[Message] &#FB9C08&lНЕАР&7: &fУказанный вами &#FB9C08радиус&f слишком большой!"
+    - "[Sound] ENTITY_VILLAGER_NO:1.0:1.0"
